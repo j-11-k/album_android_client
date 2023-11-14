@@ -1,6 +1,5 @@
 package com.example.SharedAlbum;
 
-import android.annotation.SuppressLint;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -25,7 +24,6 @@ public class PicDataCenter {
         public final int height;
         public final String description;
 
-        @SuppressLint("DefaultLocale")
         public PicData(String name, String path, Date createTime, int size, int width, int height) {
             this.name = name;
             this.path = path;
@@ -33,21 +31,23 @@ public class PicDataCenter {
             this.size = size;
             this.width = width;
             this.height = height;
-            description = String.format("\t%s  %s  %d x %d",DateFormat.getDateTimeInstance().format(createTime),humanReadableByteCountSI(size),width,height);
+            description = String.format("\t%s  %s  %d x %d", DateFormat.getDateTimeInstance().format(createTime), humanReadableByteCountSI(size), width, height);
         }
     }
 
-    static private List<PicData> data;
+    static private List<PicData> localPicMetaList;
+
+    static public List<PicData> picToImageViewer;
 
     public static List<PicData> GetAllPicData(Context context) {
-        if (data == null) {
+        if (localPicMetaList == null) {
             getAllPhotoPaths(context);
         }
-        return data;
+        return localPicMetaList;
     }
 
     static void getAllPhotoPaths(Context context) {
-        data = new ArrayList<>();
+        localPicMetaList = new ArrayList<>();
         ContentResolver resolver = context.getContentResolver();
         String[] projection = new String[]{
                 MediaStore.Images.Media.DISPLAY_NAME,
@@ -64,8 +64,8 @@ public class PicDataCenter {
                     null, null, MediaStore.Images.Media.DATE_ADDED + " DESC");
             while (cursor.moveToNext()) {
                 PicData picData = new PicData(cursor.getString(0), cursor.getString(1),
-                        new Date(cursor.getInt(2)* 1000L), cursor.getInt(3), cursor.getInt(4),cursor.getInt(5));
-                data.add(picData);
+                        new Date(cursor.getInt(2) * 1000L), cursor.getInt(3), cursor.getInt(4), cursor.getInt(5));
+                localPicMetaList.add(picData);
             }
             cursor.close();
         } catch (RemoteException e) {

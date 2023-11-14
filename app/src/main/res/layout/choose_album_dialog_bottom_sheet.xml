@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/share_to_album_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="请选择要分享到的相册"
+        android:textSize="18sp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/albums_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp"/>
+</LinearLayout>

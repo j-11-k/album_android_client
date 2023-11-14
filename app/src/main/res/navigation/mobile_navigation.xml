@@ -3,23 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_local_photo">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.SharedAlbum.ui.home.HomeFragment"
+        android:id="@+id/navigation_local_photo"
+        android:name="com.example.SharedAlbum.ui.local_frag.LocalFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.SharedAlbum.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_albums"
+        android:name="com.example.SharedAlbum.ui.cloud_frag.AlbumFragment"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_albums_to_albumDetailFrag"
+            app:destination="@id/nav_album_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.SharedAlbum.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/nav_album_detail"
+        android:name="com.example.SharedAlbum.ui.cloud_frag.AlbumDetailFrag"
+        android:label="AlbumDetailFrag" />
+
+
 </navigation>

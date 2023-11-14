@@ -6,4 +6,14 @@
         android:icon="@drawable/baseline_add_to_photos_24"
         android:title="添加到相册"
         app:showAsAction="always"/>
+    <item
+        android:icon="@drawable/ic_download_24"
+        android:title="下载"
+        app:showAsAction="always"
+        android:id="@+id/menu_bottom_album_download"/>
+    <item
+        android:id="@+id/menu_bottom_album_delete"
+        android:title="删除"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_delete_24"/>
 </menu>

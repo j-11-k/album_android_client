@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_top_album_select_all"
+        android:title="全选"
+        android:icon="@drawable/ic_select_all_24"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/invite_other_to_album"
+        android:title="邀请"
+        android:icon="@drawable/ic_folder_shared_24"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/quit_album"
+        android:title="退出相册"
+        android:icon="@drawable/ic_exit_24"
+        app:showAsAction="never"/>
+</menu>

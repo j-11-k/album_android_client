@@ -1,14 +1,17 @@
-package com.example.SharedAlbum.ui.home;
+package com.example.SharedAlbum.ui.local_frag;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.transition.Transition;
 import android.transition.TransitionListenerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.view.Window;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.adapter.FragmentViewHolder;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
@@ -25,16 +27,11 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.SharedAlbum.PicDataCenter;
-import com.example.SharedAlbum.R;
 import com.example.SharedAlbum.databinding.PicViewFragBinding;
 import com.example.SharedAlbum.databinding.PicViewLayoutBinding;
 import com.example.SharedAlbum.ui.CustomVIew.PinchImageView;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ImagePagerActivity extends FragmentActivity {
     public final static String PagerText = "pager_transition_name";
@@ -46,7 +43,10 @@ public class ImagePagerActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        picDataList = PicDataCenter.GetAllPicData(this);
+//        Window window = getWindow();
+//        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        picDataList = PicDataCenter.picToImageViewer;
+        PicDataCenter.picToImageViewer = null;
         binding = PicViewLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -77,7 +77,7 @@ public class ImagePagerActivity extends FragmentActivity {
             @Override
             public void onTransitionEnd(Transition transition) {
                 super.onTransitionEnd(transition);
-                        viewPager.setOffscreenPageLimit(2);
+                viewPager.setOffscreenPageLimit(2);
             }
         });
         getWindow().setSharedElementReturnTransition(null);
@@ -127,19 +127,19 @@ public class ImagePagerActivity extends FragmentActivity {
             binding = PicViewFragBinding.inflate(inflater, container, false);
             View root = binding.getRoot();
             imageView = binding.fragmentContainingImage;
-            Glide.with(this).load(picUri).listener(new RequestListener<Drawable>() {
+            Glide.with(this).load(picUri).listener(new RequestListener<>() {
                 @Override
                 public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                     r.run();
                     return false;
                 }
-
                 @Override
                 public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                     r.run();
                     return false;
                 }
-            })/*.thumbnail(.25f)*/.into(imageView);
+            }).thumbnail(.25f).into(imageView);
+            imageView.setOnClickListener(v -> getActivity().onBackPressed());
             return root;
         }
 
