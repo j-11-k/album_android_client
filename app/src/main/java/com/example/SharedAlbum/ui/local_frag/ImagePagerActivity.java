@@ -1,17 +1,13 @@
 package com.example.SharedAlbum.ui.local_frag;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.transition.Transition;
 import android.transition.TransitionListenerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,7 +22,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.example.SharedAlbum.PicDataCenter;
+import com.example.SharedAlbum.Data.PicDataCenter;
 import com.example.SharedAlbum.databinding.PicViewFragBinding;
 import com.example.SharedAlbum.databinding.PicViewLayoutBinding;
 import com.example.SharedAlbum.ui.CustomVIew.PinchImageView;

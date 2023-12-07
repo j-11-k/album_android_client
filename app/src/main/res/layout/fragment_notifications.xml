@@ -39,7 +39,38 @@
         android:id="@+id/change_name"
         android:textSize="24sp"
         android:padding="5dp"
-
         android:text="  修改名称"
+        android:background="#1753406C"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/change_ip"
+        android:textSize="24sp"
+        android:padding="5dp"
+        android:text="  设置IP地址"
+        android:background="#1753406C"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/change_port"
+        android:textSize="24sp"
+        android:padding="5dp"
+        android:text="  设置端口号"
         android:background="#1753406C"/>
 </LinearLayout>

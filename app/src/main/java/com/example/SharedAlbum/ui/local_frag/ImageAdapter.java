@@ -1,6 +1,5 @@
 package com.example.SharedAlbum.ui.local_frag;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,24 +15,24 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.SharedAlbum.AlbumData;
+import com.example.SharedAlbum.Data.AlbumData;
 import com.example.SharedAlbum.ItemClickCallback;
-import com.example.SharedAlbum.PicDataCenter;
+import com.example.SharedAlbum.Data.PicDataCenter;
 import com.example.SharedAlbum.R;
 import com.example.SharedAlbum.ui.CustomVIew.SquareImageView;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder> {
-    public ImageAdapter(Context context, List<PicDataCenter.PicData> paths, ItemClickCallback clickCallback) {
+    public ImageAdapter(Context context,  ItemClickCallback clickCallback) {
         this.context = context;
-        this.paths = paths;
         this.clickCallback = clickCallback;
     }
 
-    public List<PicDataCenter.PicData> paths;
+    public List<PicDataCenter.PicData> paths = new ArrayList<>();
     Context context;
     ItemClickCallback clickCallback;
     static ColorMatrix cm = new ColorMatrix();

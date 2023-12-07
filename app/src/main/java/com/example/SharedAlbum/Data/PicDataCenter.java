@@ -1,4 +1,4 @@
-package com.example.SharedAlbum;
+package com.example.SharedAlbum.Data;
 
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
@@ -22,7 +22,7 @@ public class PicDataCenter {
         public final int size;
         public final int width;
         public final int height;
-        public final String description;
+        public String description;
 
         public PicData(String name, String path, Date createTime, int size, int width, int height) {
             this.name = name;
@@ -31,13 +31,22 @@ public class PicDataCenter {
             this.size = size;
             this.width = width;
             this.height = height;
+        }
+        void generateDes(){
             description = String.format("\t%s  %s  %d x %d", DateFormat.getDateTimeInstance().format(createTime), humanReadableByteCountSI(size), width, height);
         }
     }
 
+
+
     static private List<PicData> localPicMetaList;
 
     static public List<PicData> picToImageViewer;
+
+    public static List<PicData> RefreshAndGetAllPicData(Context context){
+        getAllPhotoPaths(context);
+        return localPicMetaList;
+    }
 
     public static List<PicData> GetAllPicData(Context context) {
         if (localPicMetaList == null) {

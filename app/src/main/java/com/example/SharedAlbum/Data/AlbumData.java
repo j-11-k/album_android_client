@@ -1,5 +1,6 @@
-package com.example.SharedAlbum;
+package com.example.SharedAlbum.Data;
 
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -19,13 +20,21 @@ public class AlbumData {
         public final String thumbPath;
         public final String superThumbPath;
         public final String uploaderName;
+        public final int pid;
 
-        public RemotePicData(String name, String path, Date createTime, int size, int width, int height,
-                             String thumbPath, String superThumbPath, String uploaderName) {
-            super(name, path, createTime, size, width, height);
+        public RemotePicData(String name, String path, Date createTime,
+                             String thumbPath, String superThumbPath, String uploaderName,int pid) {
+            super(name, path, createTime, 0,0,0);
             this.thumbPath = thumbPath;
             this.superThumbPath = superThumbPath;
             this.uploaderName = uploaderName;
+            this.pid = pid;
+            generateDes();
+        }
+
+        @Override
+        void generateDes() {
+            description = String.format("\t%s  %s", DateFormat.getDateTimeInstance().format(createTime), uploaderName);
         }
     }
 
